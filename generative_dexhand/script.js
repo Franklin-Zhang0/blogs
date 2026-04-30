@@ -4,10 +4,16 @@ const sections = [...document.querySelectorAll("[data-section-nav], .article-sec
 const navLinks = [...document.querySelectorAll(".top-nav a, .toc a")];
 const filterButtons = [...document.querySelectorAll(".filter-button")];
 const methodCards = [...document.querySelectorAll(".method-card")];
+const methodsPagination = document.querySelector(".methods-pagination");
+const methodsPageNumbers = document.querySelector(".methods-page-numbers");
+const methodsNextPage = document.querySelector(".methods-page-next");
 const storyPlot = document.querySelector(".storyline-plot");
 const storyNodes = [...document.querySelectorAll(".story-node")];
 const storyPreview = document.querySelector("#storyPreview");
 const storyDetail = document.querySelector("#storyDetail");
+const methodsPageSize = 5;
+let currentFilter = "all";
+let currentPage = 1;
 
 function updateProgress() {
   const scrollTop = window.scrollY;
@@ -78,16 +84,88 @@ function updateStoryDetail(node) {
 }
 
 function showLinkedMethod(event) {
+  event.preventDefault();
   const targetId = event.currentTarget.hash?.slice(1);
   const target = targetId ? document.getElementById(targetId) : null;
 
   if (!target?.classList.contains("method-card")) return;
 
-  filterButtons.forEach((item) => item.classList.toggle("active", item.dataset.filter === "all"));
-  methodCards.forEach((card) => card.classList.remove("is-hidden", "method-highlight"));
+  currentFilter = "all";
+  setFilterButtonState(currentFilter);
+
+  const allCards = getFilteredMethodCards("all");
+  const targetIndex = allCards.indexOf(target);
+  currentPage = targetIndex >= 0 ? Math.floor(targetIndex / methodsPageSize) + 1 : 1;
+
+  renderMethods();
+
+  methodCards.forEach((card) => card.classList.remove("method-highlight"));
   target.classList.add("method-highlight");
+  target.scrollIntoView({ behavior: "smooth", block: "start" });
 
   window.setTimeout(() => target.classList.remove("method-highlight"), 1800);
+}
+
+function getFilteredMethodCards(filter = currentFilter) {
+  return methodCards.filter((card) => filter === "all" || card.dataset.family === filter);
+}
+
+function setFilterButtonState(filter) {
+  filterButtons.forEach((button) => button.classList.toggle("active", button.dataset.filter === filter));
+}
+
+function renderMethodPagination(totalPages) {
+  if (!methodsPagination || !methodsPageNumbers || !methodsNextPage) return;
+
+  methodsPageNumbers.innerHTML = "";
+
+  if (totalPages <= 1) {
+    methodsPagination.hidden = true;
+    methodsNextPage.disabled = true;
+    return;
+  }
+
+  methodsPagination.hidden = false;
+
+  for (let page = 1; page <= totalPages; page += 1) {
+    const pageButton = document.createElement("button");
+    pageButton.type = "button";
+    pageButton.className = "methods-page-button";
+    pageButton.textContent = String(page);
+    pageButton.classList.toggle("active", page === currentPage);
+    if (page === currentPage) {
+      pageButton.setAttribute("aria-current", "page");
+    }
+
+    pageButton.addEventListener("click", () => {
+      if (currentPage === page) return;
+      currentPage = page;
+      renderMethods();
+    });
+
+    methodsPageNumbers.append(pageButton);
+  }
+
+  methodsNextPage.disabled = currentPage >= totalPages;
+}
+
+function renderMethods() {
+  const filteredCards = getFilteredMethodCards();
+  const totalPages = Math.max(1, Math.ceil(filteredCards.length / methodsPageSize));
+
+  if (currentPage > totalPages) {
+    currentPage = totalPages;
+  }
+
+  const startIndex = (currentPage - 1) * methodsPageSize;
+  const endIndex = startIndex + methodsPageSize;
+  const visibleCards = new Set(filteredCards.slice(startIndex, endIndex));
+
+  methodCards.forEach((card) => {
+    card.classList.toggle("is-hidden", !visibleCards.has(card));
+  });
+
+  renderMethodPagination(totalPages);
 }
 
 storyNodes.forEach((node) => {
@@ -108,14 +186,18 @@ storyDetail?.querySelector("a")?.addEventListener("click", showLinkedMethod);
 
 filterButtons.forEach((button) => {
   button.addEventListener("click", () => {
-    const filter = button.dataset.filter;
-
-    filterButtons.forEach((item) => item.classList.toggle("active", item === button));
-    methodCards.forEach((card) => {
-      const shouldShow = filter === "all" || card.dataset.family === filter;
-      card.classList.toggle("is-hidden", !shouldShow);
-    });
+    currentFilter = button.dataset.filter || "all";
+    currentPage = 1;
+    setFilterButtonState(currentFilter);
+    renderMethods();
   });
+});
+
+methodsNextPage?.addEventListener("click", () => {
+  const totalPages = Math.max(1, Math.ceil(getFilteredMethodCards().length / methodsPageSize));
+  if (currentPage >= totalPages) return;
+  currentPage += 1;
+  renderMethods();
 });
 
 window.addEventListener("scroll", updateProgress, { passive: true });
@@ -123,3 +205,5 @@ window.addEventListener("resize", updateProgress);
 
 updateReadingTime();
 updateProgress();
+setFilterButtonState(currentFilter);
+renderMethods();

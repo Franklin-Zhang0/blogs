@@ -246,7 +246,7 @@
         <article class="article">
           <section id="problem" class="article-section">
             <p class="label">1. Motivation</p>
-            <h2>Why dexterous manipulation became a generative modeling problem</h2>
+            <h2>Why dexterous manipulation need generative models </h2>
             <p>
               Dexterous manipulation is harder than parallel-jaw grasping for a
               basic reason: the robot is no longer choosing only a gripper pose.
@@ -694,6 +694,165 @@
                   </figcaption>
                 </figure>
               </article>
+
+              <article class="method-card text-only" id="method-cgf" data-family="vae">
+                <div class="method-copy">
+                  <span class="chip vae">Continuous grasping with cVAE</span>
+                  <h3>Learning Continuous Grasping Function with a Dexterous Hand from Human Demonstrations</h3>
+                  <p>
+                    This work learns a Continuous Grasping Function for dexterous hand manipulation from human demonstrations. It retargets human-object interaction trajectories to robot hand demonstrations, then trains a conditional variational autoencoder to generate smooth, continuous-time grasping motions. The model samples multiple candidate plans, tested in simulation and transferred to a real Allegro Hand.
+                  </p>
+                  <p>
+                    Source:
+                    <a href="https://arxiv.org/abs/2207.05053">arXiv</a>.
+                  </p>
+                </div>
+              </article>
+
+              <article class="method-card text-only" id="method-ugg" data-family="diffusion">
+                <div class="method-copy">
+                  <span class="chip diffusion">Unified diffusion grasping</span>
+                  <h3>UGG: Unified Generative Grasping</h3>
+                  <p>
+                    UGG proposes a unified diffusion-based framework for dexterous grasp generation. Instead of regressing one hand pose, it jointly models object point clouds, hand parameters, and contact information. A transformer diffusion model generates diverse grasp candidates, while a lightweight discriminator improves physical success. It also supports reverse generation, such as inferring object information from hand configurations.
+                  </p>
+                  <p>
+                    Source:
+                    <a href="https://arxiv.org/abs/2311.16917">arXiv</a>.
+                  </p>
+                </div>
+              </article>
+
+              <article class="method-card text-only" id="method-unidexfpm" data-family="diffusion">
+                <div class="method-copy">
+                  <span class="chip diffusion">Pre-grasp diffusion policy</span>
+                  <h3>UniDexFPM: Universal Dexterous Functional Pre-grasp Manipulation Via Diffusion Policy</h3>
+                  <p>
+                    UniDexFPM studies functional pre-grasp manipulation, where a dexterous hand repositions or reorients objects before grasping. It uses diffusion policy to generate control actions conditioned on object state, goal pose, and hand-object interaction. The policy models multi-modal contact-rich behavior, enabling robust preparation for later functional grasping across diverse scenarios.
+                  </p>
+                  <p>
+                    Source:
+                    <a href="https://arxiv.org/abs/2403.12421">arXiv</a>.
+                  </p>
+                </div>
+              </article>
+
+              <article class="method-card text-only" id="method-dexgangrasp" data-family="hybrid">
+                <div class="method-copy">
+                  <span class="chip hybrid">GAN-based task grasping</span>
+                  <h3>DexGANGrasp: Dexterous Generative Adversarial Grasping Synthesis for Task-Oriented Manipulation</h3>
+                  <p>
+                    DexGANGrasp uses a conditional GAN to synthesize dexterous grasps from single-view observations in real time. DexGenerator proposes candidate hand configurations and DexEvaluator judges grasp stability. The method supports both general and task-oriented grasping, and later integrates affordance prompting with multimodal language-vision models for semantically grounded manipulation.
+                  </p>
+                  <p>
+                    Source:
+                    <a href="https://arxiv.org/abs/2407.17348">arXiv</a>.
+                  </p>
+                </div>
+              </article>
+
+              <article class="method-card text-only" id="method-dexgraspnet2" data-family="diffusion">
+                <div class="method-copy">
+                  <span class="chip diffusion">Cluttered-scene diffusion grasping</span>
+                  <h3>DexGraspNet 2.0: Learning Generative Dexterous Grasping in Large-scale Synthetic Cluttered Scenes</h3>
+                  <p>
+                    DexGraspNet 2.0 introduces a large synthetic benchmark for dexterous grasping in cluttered scenes, with thousands of scenes and hundreds of millions of grasps. It also proposes a two-stage generative method using diffusion conditioned on local geometry. The model generates feasible grasps under clutter and demonstrates strong zero-shot sim-to-real transfer.
+                  </p>
+                  <p>
+                    Source:
+                    <a href="https://arxiv.org/abs/2410.23004">arXiv</a>.
+                  </p>
+                </div>
+              </article>
+
+              <article class="method-card text-only" id="method-arcap" data-family="data">
+                <div class="method-copy">
+                  <span class="chip data">AR-assisted demonstration data</span>
+                  <h3>ARCap: Collecting High-quality Human Demonstrations for Robot Learning with Augmented Reality Feedback</h3>
+                  <p>
+                    ARCap is primarily a data-collection system, but directly supports generative policy learning. It uses augmented-reality visual feedback and haptic warnings to help users collect robot-executable demonstrations that respect kinematics and avoid collisions. These higher-quality demonstrations can train methods such as diffusion policies for dexterous or cross-embodiment manipulation.
+                  </p>
+                  <p>
+                    Source:
+                    <a href="https://arxiv.org/abs/2410.08464">arXiv</a>.
+                  </p>
+                </div>
+              </article>
+
+              <article class="method-card text-only" id="method-vla-switch" data-family="hybrid">
+                <div class="method-copy">
+                  <span class="chip hybrid">VLA + diffusion control switching</span>
+                  <h3>Vision-Language-Action Model and Diffusion Policy Switching Enables Dexterous Control of an Anthropomorphic Hand</h3>
+                  <p>
+                    This work combines a fine-tuned vision-language-action model with a diffusion policy for dexterous control of a 13-DoF anthropomorphic hand. The VLA model handles language-conditioned high-level planning, while diffusion handles precise low-level interactions. A learned switching signal transitions between them for more robust language-guided pick-and-place and error recovery.
+                  </p>
+                  <p>
+                    Source:
+                    <a href="https://arxiv.org/abs/2410.14022">arXiv</a>.
+                  </p>
+                </div>
+              </article>
+
+              <article class="method-card text-only" id="method-visuomotor-diffusion" data-family="diffusion">
+                <div class="method-copy">
+                  <span class="chip diffusion">Real-world in-hand diffusion</span>
+                  <h3>Learning Dexterous In-Hand Manipulation with Multifingered Hands via Visuomotor Diffusion</h3>
+                  <p>
+                    This paper learns real-world dexterous in-hand manipulation using visuomotor diffusion policies. Demonstrations are collected via an AR teleoperation setup for the Allegro Hand and filtered to remove low-quality trajectories. The diffusion policy maps visual observations and robot states to actions, enabling complex multi-finger skills such as one-handed bottle-lid unscrewing.
+                  </p>
+                  <p>
+                    Source:
+                    <a href="https://arxiv.org/abs/2503.02587">arXiv</a>.
+                  </p>
+                </div>
+              </article>
+
+              <article class="method-card text-only" id="method-afforddexgrasp" data-family="flow">
+                <div class="method-copy">
+                  <span class="chip flow">Language-guided flow matching</span>
+                  <h3>AffordDexGrasp: Open-set Language-guided Dexterous Grasp with Generalizable-Instructive Affordance</h3>
+                  <p>
+                    AffordDexGrasp addresses open-set, language-guided dexterous grasping by bridging language semantics and hand actions through a generalizable affordance representation. It uses Affordance Flow Matching to generate language-conditioned affordances and Grasp Flow Matching to generate grasps from those affordances, improving generalization to unseen object categories and task instructions.
+                  </p>
+                  <p>
+                    Source:
+                    <a href="https://arxiv.org/abs/2503.07360">arXiv</a>.
+                  </p>
+                </div>
+              </article>
+
+              <article class="method-card text-only" id="method-g-dexgrasp" data-family="hybrid">
+                <div class="method-copy">
+                  <span class="chip hybrid">Retrieval-augmented generation</span>
+                  <h3>G-DexGrasp: Generalizable Dexterous Grasping Synthesis Via Part-Aware Prior Retrieval and Prior-Assisted Generation</h3>
+                  <p>
+                    G-DexGrasp uses a retrieval-augmented generation pipeline for task-oriented dexterous grasp synthesis. It first retrieves part-aware priors, including contact parts and affordance-related grasp distributions, then uses them to guide hand-configuration synthesis and refinement. This prior-assisted generation makes grasps more plausible for unseen object categories and language instructions.
+                  </p>
+                  <p>
+                    Source:
+                    <a href="https://arxiv.org/abs/2503.19457">arXiv</a>.
+                  </p>
+                </div>
+              </article>
+
+              <article class="method-card text-only" id="method-contact2motion" data-family="hybrid">
+                <div class="method-copy">
+                  <span class="chip hybrid">Contact-guided motion generation</span>
+                  <h3>Contact2Motion: Contact guided dexterous grasp motion generation with synergy embedded optimization</h3>
+                  <p>
+                    Contact2Motion focuses on generating complete dexterous grasp motions, not only final poses. It uses contact information as guidance and combines motion generation with synergy-embedded optimization. The generative stage predicts contact- or motion-related structures, while optimization enforces hand synergies and physical plausibility, producing smoother and more controllable grasp trajectories.
+                  </p>
+                  <p>
+                    Source:
+                    <a href="https://journals.sagepub.com/doi/10.1177/02783649251364392">Sage Journals</a>.
+                  </p>
+                </div>
+              </article>
+            </div>
+
+            <div class="methods-pagination" aria-label="Methods pagination" hidden>
+              <div class="methods-page-numbers" role="group" aria-label="Method pages"></div>
+              <button class="methods-page-next" type="button" aria-label="Go to next page">+</button>
             </div>
           </section>
 
@@ -883,17 +1042,6 @@
               </article>
             </div>
 
-            <figure class="wide-figure">
-              <img
-                src="assets/deck_figures/flowpolicy_speedband.jpg"
-                alt="FlowPolicy speed band showing fast flow-based policy generation"
-              />
-              <figcaption>
-                Fast generation is becoming a central research target. Source:
-                <a href="https://arxiv.org/abs/2412.04987">FlowPolicy</a>.
-              </figcaption>
-            </figure>
-
             <div class="future-callout">
               <h3>Likely research direction</h3>
               <p>
@@ -911,16 +1059,46 @@
             <p class="label">8. Reading Guide</p>
             <h2>Representative papers to read next</h2>
             <div class="reference-grid">
-              <a href="https://arxiv.org/abs/2310.03740">ContactGen - generative contact modeling for grasp generation</a>
-              <a href="https://arxiv.org/abs/2509.24661">CEDex - cross-embodiment dexterous grasp generation</a>
-              <a href="https://arxiv.org/abs/2303.04137">Diffusion Policy - visuomotor policy learning via action diffusion</a>
-              <a href="https://arxiv.org/abs/2403.03954">DP3 - 3D diffusion policy with point-cloud conditioning</a>
-              <a href="https://arxiv.org/abs/2402.02989">DexDiffuser - diffusion-based dexterous grasp generation</a>
-              <a href="https://arxiv.org/abs/2411.18562">DexHandDiff - interaction-aware diffusion planning</a>
-              <a href="https://proceedings.mlr.press/v305/feng25a.html">FFHFlow - flow variational inference for grasp uncertainty</a>
-              <a href="https://arxiv.org/abs/2412.04987">FlowPolicy - consistency flow matching for fast 3D policies</a>
-              <a href="https://arxiv.org/abs/2505.12294">PartDexTOG - language-driven task-oriented dexterous grasping</a>
-              <a href="https://arxiv.org/abs/2506.17198">Dex1B - generated demonstrations at billion-scale</a>
+              <a href="https://arxiv.org/abs/2310.03740">
+                <span class="ref-title">ContactGen - generative contact modeling for grasp generation</span>
+                <span class="ref-value">A clear reference for understanding why contact representation can be a better generation target than raw joint pose.</span>
+              </a>
+              <a href="https://arxiv.org/abs/2509.24661">
+                <span class="ref-title">CEDex - cross-embodiment dexterous grasp generation</span>
+                <span class="ref-value">Shows how human-like contact priors can transfer to different robot hands instead of retraining from scratch per morphology.</span>
+              </a>
+              <a href="https://arxiv.org/abs/2303.04137">
+                <span class="ref-title">Diffusion Policy - visuomotor policy learning via action diffusion</span>
+                <span class="ref-value">The key policy paper that reframes control as sampling from an action distribution rather than regressing one mean action.</span>
+              </a>
+              <a href="https://arxiv.org/abs/2403.03954">
+                <span class="ref-title">DP3 - 3D diffusion policy with point-cloud conditioning</span>
+                <span class="ref-value">A practical extension that demonstrates why compact 3D geometric conditioning improves manipulation robustness.</span>
+              </a>
+              <a href="https://arxiv.org/abs/2402.02989">
+                <span class="ref-title">DexDiffuser - diffusion-based dexterous grasp generation</span>
+                <span class="ref-value">A representative dexterous grasp pipeline that combines generation with evaluation and refinement for better physical quality.</span>
+              </a>
+              <a href="https://arxiv.org/abs/2411.18562">
+                <span class="ref-title">DexHandDiff - interaction-aware diffusion planning</span>
+                <span class="ref-value">Highlights the causality issue in manipulation by explicitly addressing ghost-state failures in generated trajectories.</span>
+              </a>
+              <a href="https://proceedings.mlr.press/v305/feng25a.html">
+                <span class="ref-title">FFHFlow - flow variational inference for grasp uncertainty</span>
+                <span class="ref-value">Useful for studying uncertainty-aware grasp generation when object observations are partial or ambiguous.</span>
+              </a>
+              <a href="https://arxiv.org/abs/2412.04987">
+                <span class="ref-title">FlowPolicy - consistency flow matching for fast 3D policies</span>
+                <span class="ref-value">Important for deployment-oriented readers because it targets lower-latency inference while keeping competitive control performance.</span>
+              </a>
+              <a href="https://arxiv.org/abs/2505.12294">
+                <span class="ref-title">PartDexTOG - language-driven task-oriented dexterous grasping</span>
+                <span class="ref-value">Connects semantics with geometry by showing how language can guide grasp region choice for downstream tasks.</span>
+              </a>
+              <a href="https://arxiv.org/abs/2506.17198">
+                <span class="ref-title">Dex1B - generated demonstrations at billion-scale</span>
+                <span class="ref-value">Frames generative models as data infrastructure and demonstrates how scale can shift policy quality upstream.</span>
+              </a>
             </div>
             <p class="source-note">
               Figure assets in this blog are extracted from the cited papers and

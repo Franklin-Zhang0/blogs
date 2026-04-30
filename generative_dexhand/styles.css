@@ -1017,6 +1017,54 @@ figcaption {
   margin-top: 26px;
 }
 
+.methods-pagination {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.methods-page-numbers {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.methods-page-button,
+.methods-page-next {
+  min-height: 38px;
+  padding: 8px 15px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: #ffffff;
+  color: var(--muted);
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.methods-page-button.active,
+.methods-page-button:hover,
+.methods-page-next:hover {
+  border-color: var(--teal);
+  color: #ffffff;
+  background: var(--teal);
+}
+
+.methods-page-button:focus-visible,
+.methods-page-next:focus-visible {
+  outline: 2px solid rgba(15, 123, 117, 0.35);
+  outline-offset: 2px;
+}
+
+.methods-page-next:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  border-color: var(--line);
+  color: var(--muted);
+  background: #ffffff;
+}
+
 .method-card {
   display: grid;
   grid-template-columns: minmax(0, 1.05fr) minmax(280px, 0.95fr);
@@ -1027,6 +1075,10 @@ figcaption {
   border-radius: var(--radius);
   background: #ffffff;
   box-shadow: var(--shadow);
+}
+
+.method-card.text-only {
+  grid-template-columns: minmax(0, 1fr);
 }
 
 .method-card.is-hidden {
@@ -1179,15 +1231,27 @@ figcaption {
 }
 
 .reference-grid a {
-  display: block;
-  min-height: 64px;
+  display: grid;
+  gap: 8px;
+  min-height: 110px;
   padding: 16px;
   border: 1px solid var(--line);
   border-radius: var(--radius);
   background: #ffffff;
   color: var(--ink);
-  font-weight: 800;
   text-decoration: none;
+}
+
+.ref-title {
+  font-weight: 800;
+}
+
+.ref-value {
+  display: block;
+  color: var(--muted);
+  font-size: 0.92rem;
+  font-weight: 400;
+  line-height: 1.5;
 }
 
 .reference-grid a:hover {
