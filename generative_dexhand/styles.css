@@ -969,10 +969,6 @@ figcaption {
   background: var(--teal);
 }
 
-.chip.gan {
-  background: var(--coral);
-}
-
 .chip.diffusion {
   background: var(--blue);
 }
@@ -987,6 +983,10 @@ figcaption {
 
 .chip.data {
   background: var(--gold);
+}
+
+.method-copy .chip + .chip {
+  margin-left: 8px;
 }
 
 .filter-bar {

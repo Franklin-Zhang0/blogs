@@ -108,7 +108,10 @@ function showLinkedMethod(event) {
 }
 
 function getFilteredMethodCards(filter = currentFilter) {
-  return methodCards.filter((card) => filter === "all" || card.dataset.family === filter);
+  return methodCards.filter((card) => {
+    const families = (card.dataset.family || "").split(/\s+/);
+    return filter === "all" || families.includes(filter);
+  });
 }
 
 function setFilterButtonState(filter) {

@@ -16,9 +16,9 @@ FFHFlow and CEDex remain static because the available direct media was either mo
 | Dex1B | `demo_videos/dex1b/dex1b_teaser.mp4` | `assets/videos/dex1b_demo.mp4` | 581 KB | dataset teaser clip |
 | CGF | `https://jianglongye.com/cgf/static/assets/teaser.mp4` | `assets/videos/cgf_demo.mp4` | 47 KB | project teaser clip |
 | UniDexFPM | `demo_videos/unidexfpm/unidexfpm_cup_demo.mp4` | `assets/videos/unidexfpm_demo.mp4` | 19 KB | functional pre-grasp manipulation clip |
-| DexGANGrasp | `https://david-s-martinez.github.io/DexGANGrasp.io/dexgangrasp.mp4` | `assets/videos/dexgangrasp_demo.mp4` | 101 KB | real-world grasping excerpt, title intro skipped |
 | DexGraspNet 2.0 | `https://pku-epic.github.io/DexGraspNet2.0/videos/Supplementary_video.mp4` | `assets/videos/dexgraspnet2_demo.mp4` | 106 KB | cluttered-scene result excerpt |
 | ARCap | `https://stanford-tml.github.io/ARCap/resources/teaser.mp4` | `assets/videos/arcap_demo.mp4` | 258 KB | AR feedback and data-collection excerpt |
 | VLA-switch | `https://vla-diffu-switch.github.io/static/videos/Bluepaper_combined.mp4` | `assets/videos/vla_switch_demo.mp4` | 98 KB | combined VLA plus diffusion policy rollout |
 | Visuomotor Diffusion | `https://dex-manip.github.io/videos/policy_demo.mp4` | `assets/videos/visuomotor_diffusion_demo.mp4` | 124 KB | in-hand policy evaluation excerpt |
 | AffordDexGrasp | `https://isee-laboratory.github.io/AffordDexGrasp/images/video_demo.mp4` | `assets/videos/afforddexgrasp_demo.mp4` | 129 KB | language-guided grasp inference excerpt |
+| EgoScale | `assets/videos/egoscale.mp4` original 1080p clip | `assets/videos/egoscale.mp4` | 935 KB | 10 s autoplay-safe web encode, down from 30 MB |

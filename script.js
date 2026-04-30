@@ -11,6 +11,7 @@ const storyPlot = document.querySelector(".storyline-plot");
 const storyNodes = [...document.querySelectorAll(".story-node")];
 const storyPreview = document.querySelector("#storyPreview");
 const storyDetail = document.querySelector("#storyDetail");
+const lazyVideos = [...document.querySelectorAll(".lazy-video")];
 const methodsPageSize = 5;
 let currentFilter = "all";
 let currentPage = 1;
@@ -107,7 +108,10 @@ function showLinkedMethod(event) {
 }
 
 function getFilteredMethodCards(filter = currentFilter) {
-  return methodCards.filter((card) => filter === "all" || card.dataset.family === filter);
+  return methodCards.filter((card) => {
+    const families = (card.dataset.family || "").split(/\s+/);
+    return filter === "all" || families.includes(filter);
+  });
 }
 
 function setFilterButtonState(filter) {
@@ -162,10 +166,56 @@ function renderMethods() {
   const visibleCards = new Set(filteredCards.slice(startIndex, endIndex));
 
   methodCards.forEach((card) => {
-    card.classList.toggle("is-hidden", !visibleCards.has(card));
+    const isVisible = visibleCards.has(card);
+    card.classList.toggle("is-hidden", !isVisible);
+    if (!isVisible) {
+      card.querySelectorAll(".lazy-video").forEach((video) => video.pause());
+    }
   });
 
   renderMethodPagination(totalPages);
+}
+
+function loadLazyVideo(video) {
+  if (video.dataset.loaded === "true") return;
+
+  video.querySelectorAll("source[data-src]").forEach((source) => {
+    source.src = source.dataset.src;
+    source.removeAttribute("data-src");
+  });
+
+  video.dataset.loaded = "true";
+  video.load();
+}
+
+function playLazyVideo(video) {
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  loadLazyVideo(video);
+  video.play().catch(() => {});
+}
+
+if ("IntersectionObserver" in window) {
+  const videoObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        const video = entry.target;
+
+        if (entry.isIntersecting) {
+          playLazyVideo(video);
+        } else {
+          video.pause();
+        }
+      });
+    },
+    {
+      rootMargin: "260px 0px",
+      threshold: 0.18,
+    }
+  );
+
+  lazyVideos.forEach((video) => videoObserver.observe(video));
+} else {
+  lazyVideos.forEach(loadLazyVideo);
 }
 
 storyNodes.forEach((node) => {

@@ -112,7 +112,7 @@
               data-title="Search in a hard hand-action space"
               data-summary="Early methods exposed the core bottleneck: direct search or RL in high-dimensional dexterous action spaces is brittle and data hungry."
               data-detail="Before generative modeling became central, the field relied on analytic optimization, reinforcement learning, imitation, and demonstration-augmented policies. These methods proved that dexterous hands can solve impressive tasks, but they also made the exploration and contact-discontinuity problem impossible to ignore."
-              data-papers="DAPG, DeepMimic, GAIL, analytic post-optimization"
+              data-papers="DAPG, DeepMimic, analytic post-optimization"
               data-shift="Core shift: stop treating dexterity as one deterministic action."
               data-link="#method-diffusion-policy-dp3"
               data-link-label="Read related method: Diffusion Policy / DP3"
@@ -323,10 +323,10 @@
                 <span class="time">Pre-2022</span>
                 <h3>Optimization, RL, imitation, and early latent priors</h3>
                 <p>
-                  Demonstration-augmented RL, GAIL-style expert distribution
-                  matching, and analytic post-optimization established the
-                  baseline view: direct exploration in hand joint space is too
-                  brittle. VAE-style models then compressed grasp spaces into
+                  Demonstration-augmented RL, imitation learning, and analytic
+                  post-optimization established the baseline view: direct
+                  exploration in hand joint space is too brittle. VAE-style
+                  models then compressed grasp spaces into
                   low-dimensional latent variables, improving sampling efficiency
                   but struggling with sharply separated contact modes.
                 </p>
@@ -358,7 +358,7 @@
 
           <section id="taxonomy" class="article-section">
             <p class="label">3. Taxonomy</p>
-            <h2>Five model families, five different bets</h2>
+            <h2>Four architectures plus data engines</h2>
             <p>
               The important distinction is not only which generator is used. It
               is what variable the method chooses to generate: joint poses,
@@ -378,12 +378,12 @@
                 </p>
               </article>
               <article class="tax-card">
-                <span class="chip gan">GAN / GAIL</span>
-                <h3>Expert distribution matching</h3>
+                <span class="chip data">Data engines</span>
+                <h3>Generated and aligned data</h3>
                 <p>
-                  Useful historically for learning from demonstrations without
-                  manually designed rewards. Less dominant now because training
-                  instability and mode collapse are serious costs.
+                  Scale demonstrations, human-video priors, or collection
+                  systems so downstream policies see broader contact and task
+                  variation than real robot collection alone can provide.
                 </p>
               </article>
               <article class="tax-card">
@@ -682,9 +682,10 @@
                 </figure>
               </article>
 
-              <article class="method-card" id="method-egoscale" data-family="flow">
+              <article class="method-card" id="method-egoscale" data-family="flow data">
                 <div class="method-copy">
                   <span class="chip flow">Flow-based VLA policy</span>
+                  <span class="chip data">Human-video data scaling</span>
                   <h3>EgoScale: Scaling Dexterous Manipulation with Diverse Egocentric Human Data</h3>
                   <p>
                     EgoScale connects generative modeling with dexterous
@@ -709,9 +710,17 @@
                   </p>
                 </div>
                 <figure>
-                  <video controls playsinline preload="metadata">
-                    <source src="assets/videos/egoscale.mp4" type="video/mp4" />
-                    Your browser does not support the video tag.
+                  <video
+                    class="method-video lazy-video"
+                    autoplay
+                    muted
+                    loop
+                    playsinline
+                    preload="none"
+                    poster="assets/videos/egoscale_poster.jpg"
+                    aria-label="EgoScale egocentric human data demonstration"
+                  >
+                    <source data-src="assets/videos/egoscale.mp4" type="video/mp4" />
                   </video>
                   <figcaption>
                     Video:
@@ -869,37 +878,6 @@
                   <figcaption>
                     Project video:
                     <a href="https://arxiv.org/abs/2403.12421">Wu et al., 2024</a>.
-                  </figcaption>
-                </figure>
-              </article>
-
-              <article class="method-card" id="method-dexgangrasp" data-family="hybrid">
-                <div class="method-copy">
-                  <span class="chip hybrid">GAN-based task grasping</span>
-                  <h3>DexGANGrasp: Dexterous Generative Adversarial Grasping Synthesis for Task-Oriented Manipulation</h3>
-                  <p>
-                    DexGANGrasp uses a conditional GAN to synthesize dexterous grasps from single-view observations in real time. DexGenerator proposes candidate hand configurations and DexEvaluator judges grasp stability. The method supports both general and task-oriented grasping, and later integrates affordance prompting with multimodal language-vision models for semantically grounded manipulation.
-                  </p>
-                  <p>
-                    Source:
-                    <a href="https://arxiv.org/abs/2407.17348">Feng et al., 2024</a>.
-                  </p>
-                </div>
-                <figure>
-                  <video
-                    class="method-video lazy-video"
-                    muted
-                    loop
-                    playsinline
-                    preload="none"
-                    poster="assets/project_figures/dexgangrasp_poster.jpg"
-                    aria-label="DexGANGrasp real-world grasping demo"
-                  >
-                    <source data-src="assets/videos/dexgangrasp_demo.mp4" type="video/mp4" />
-                  </video>
-                  <figcaption>
-                    Project video:
-                    <a href="https://arxiv.org/abs/2407.17348">Feng et al., 2024</a>.
                   </figcaption>
                 </figure>
               </article>
@@ -1181,10 +1159,10 @@
                     <td>Can blur separated contact modes</td>
                   </tr>
                   <tr>
-                    <td>GAN / GAIL</td>
-                    <td>Expert distribution matching</td>
-                    <td>Reward-free imitation signal</td>
-                    <td>Training instability and mode collapse</td>
+                    <td>Data engines</td>
+                    <td>Scaling demonstrations and reusable priors</td>
+                    <td>Broader task coverage and better pretraining</td>
+                    <td>Requires filtering, alignment, and physical grounding</td>
                   </tr>
                   <tr>
                     <td>Diffusion</td>
