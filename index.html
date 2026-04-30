@@ -180,7 +180,7 @@
               data-title="Fast flows, language, and generated data"
               data-summary="The field now asks how to make generation fast, task-aware, embodiment-transferable, and useful as a data engine."
               data-detail="Recent work moves beyond one model family. Flow matching targets lower-latency control, language-conditioned methods ground grasps in task intent, cross-embodiment methods transfer contact priors, and Dex1B-style pipelines use generation to create training demonstrations at scale."
-              data-papers="FlowPolicy, FFHFlow, PartDexTOG, CEDex, Dex1B"
+              data-papers="FlowPolicy, FFHFlow, EgoScale, PartDexTOG, CEDex, Dex1B"
               data-shift="Core shift: generation becomes infrastructure, not only a planner."
               data-link="#method-dex1b"
               data-link-label="Read related method: Dex1B"
@@ -205,7 +205,7 @@
               intent, deployment latency, and data-scale requirements.
             </p>
             <ul>
-              <li>Representative: DexHandDiff, FlowPolicy, PartDexTOG, Dex1B</li>
+              <li>Representative: DexHandDiff, FlowPolicy, EgoScale, PartDexTOG, Dex1B</li>
               <li>Core shift: multimodality is necessary, but not enough</li>
             </ul>
             <a href="#future">Open future directions</a>
@@ -635,6 +635,34 @@
                     <a href="https://arxiv.org/abs/2412.04987">Zhang et al., AAAI 2025</a>.
                   </figcaption>
                 </figure>
+              </article>
+
+              <article class="method-card text-only" id="method-egoscale" data-family="flow">
+                <div class="method-copy">
+                  <span class="chip flow">Flow-based VLA policy</span>
+                  <h3>EgoScale: Scaling Dexterous Manipulation with Diverse Egocentric Human Data</h3>
+                  <p>
+                    EgoScale connects generative modeling with dexterous
+                    manipulation by formulating high-DoF robot control as
+                    conditional action generation. Instead of generating images
+                    or static grasps, it trains a flow-based
+                    Vision-Language-Action policy to generate future wrist
+                    motions and dexterous hand joint actions conditioned on
+                    egocentric observations and language instructions.
+                  </p>
+                  <p>
+                    Large-scale human video pretraining provides a reusable
+                    motor prior, while lightweight aligned human-robot
+                    mid-training grounds this prior in executable robot control.
+                    In this sense, the generative model serves as the policy
+                    itself, producing temporally coherent action chunks for
+                    long-horizon dexterous manipulation.
+                  </p>
+                  <p>
+                    Source:
+                    <a href="https://arxiv.org/pdf/2602.16710">arXiv:2602.16710</a>.
+                  </p>
+                </div>
               </article>
 
               <article class="method-card" id="method-partdextog" data-family="hybrid">
@@ -1090,6 +1118,10 @@
               <a href="https://arxiv.org/abs/2412.04987">
                 <span class="ref-title">FlowPolicy - consistency flow matching for fast 3D policies</span>
                 <span class="ref-value">Important for deployment-oriented readers because it targets lower-latency inference while keeping competitive control performance.</span>
+              </a>
+              <a href="https://arxiv.org/pdf/2602.16710">
+                <span class="ref-title">EgoScale - flow-based Vision-Language-Action policy for dexterous control</span>
+                <span class="ref-value">Models high-DoF robot control as conditional action generation and uses human-video pretraining plus lightweight human-robot alignment to produce temporally coherent action chunks.</span>
               </a>
               <a href="https://arxiv.org/abs/2505.12294">
                 <span class="ref-title">PartDexTOG - language-driven task-oriented dexterous grasping</span>
