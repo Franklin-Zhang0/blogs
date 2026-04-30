@@ -256,53 +256,63 @@
               object movement.
             </p>
             <p>
-              This creates four pressure points for learning systems. First,
-              hand action spaces are high-dimensional. Second, the physics is
-              discontinuous because a tiny pose change can create or remove a
-              contact. Third, the solution set is multimodal: multiple grasps,
-              contact assignments, and trajectories may all be correct. Fourth,
-              high-quality real demonstrations are expensive, while simulation
-              needs careful filtering before transfer.
+              This creates four major challenges for learning systems:
+              high-dimensional action spaces in multi-fingered hands that
+              require coordinated wrist-palm-finger control; discontinuous
+              contact physics where small pose changes can create, remove, or
+              shift contacts; multimodal solution spaces where different
+              grasps, contact assignments, finger motions, and trajectories can
+              all solve the same task; and limited, noisy training data, since
+              high-quality real-world demonstrations are expensive while
+              simulation data often needs careful filtering before reliable
+              real-robot transfer.
             </p>
 
-            <div class="insight-row">
+            <div class="insight-row four-cards">
               <div class="insight">
                 <span class="insight-number">01</span>
-                <h3>Multimodality</h3>
+                <h3>Multiple valid solutions</h3>
                 <p>
-                  The same object can be held by fingertips, enveloped by the
-                  palm, pinched at a functional part, or reoriented before use.
+                  Dexterous manipulation is highly multi-modal. The same task
+                  can be completed with different grasps, contact points, wrist
+                  poses, and finger motions. Generative models can produce
+                  diverse feasible solutions instead of predicting only one
+                  action.
                 </p>
               </div>
               <div class="insight">
                 <span class="insight-number">02</span>
-                <h3>Contact physics</h3>
+                <h3>High-dimensional control</h3>
                 <p>
-                  Small pose errors can switch the active constraints, so a
-                  smooth policy can fail exactly where dexterity matters most.
+                  Multi-fingered hands have many degrees of freedom. Generative
+                  models learn structured motion priors from data, helping
+                  robots generate natural and efficient hand-object interactions
+                  in a large action space.
                 </p>
               </div>
               <div class="insight">
                 <span class="insight-number">03</span>
-                <h3>Data scarcity</h3>
+                <h3>Complex contact reasoning</h3>
                 <p>
-                  Collecting hand demonstrations is slow; synthetic data and
-                  generated proposals become part of the learning infrastructure.
+                  Dexterous tasks rely on rich contacts, friction, sliding,
+                  rolling, and regrasping. Generative models can learn common
+                  contact patterns and generate physically plausible
+                  manipulation behaviors.
+                </p>
+              </div>
+              <div class="insight">
+                <span class="insight-number">04</span>
+                <h3>Long-horizon action generation</h3>
+                <p>
+                  Many dexterous tasks require sequences of coordinated
+                  actions, such as grasping, rotating, regrasping, inserting,
+                  and releasing. Generative models can generate temporally
+                  coherent action trajectories for such long-horizon
+                  manipulation.
                 </p>
               </div>
             </div>
 
-            <figure class="wide-figure">
-              <img
-                src="assets/deck_figures/dexdiffuser_pipeline.jpg"
-                alt="DexDiffuser pipeline for generating, evaluating, and refining dexterous grasps"
-              />
-              <figcaption>
-                DexDiffuser illustrates the modern loop: generate candidates,
-                evaluate physical quality, refine, then execute. Source:
-                <a href="https://arxiv.org/abs/2402.02989">Weng et al., 2024</a>.
-              </figcaption>
-            </figure>
           </section>
 
           <section id="timeline" class="article-section">

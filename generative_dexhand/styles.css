@@ -807,6 +807,10 @@ h3 {
   margin-top: 38px;
 }
 
+.insight-row.four-cards {
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+}
+
 .insight,
 .tax-card,
 .application-grid article,
@@ -1530,6 +1534,10 @@ figcaption {
   .pattern-list,
   .reference-grid {
     grid-template-columns: 1fr;
+  }
+
+  .insight-row.four-cards {
+    grid-template-columns: 1fr !important;
   }
 
   .tax-card:last-child {
